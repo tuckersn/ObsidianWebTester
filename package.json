@@ -1,23 +1,25 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "obsidian-web-tester",
 	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"description": "API and other web technology testing and documentation platform for Obsidian",
 	"main": "main.js",
 	"scripts": {
-		"dev": "node esbuild.config.mjs",
-		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+		"dev": "concurrently --kill-others \"sass -w .:.\" \"node esbuild.config.mjs\"",
+		"build": "sass .:. && tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
 		"version": "node version-bump.mjs && git add manifest.json versions.json"
 	},
 	"keywords": [],
-	"author": "",
+	"author": "Tucker Sneed",
 	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^16.11.6",
 		"@typescript-eslint/eslint-plugin": "5.29.0",
 		"@typescript-eslint/parser": "5.29.0",
 		"builtin-modules": "3.3.0",
+		"concurrently": "^8.2.0",
 		"esbuild": "0.17.3",
 		"obsidian": "latest",
+		"sass": "^1.66.1",
 		"tslib": "2.4.0",
 		"typescript": "4.7.4"
 	}
