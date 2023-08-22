@@ -1,6 +1,9 @@
-import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
-import { WTSettingTab } from 'settings';
 
+import { InitCommands } from 'commands';
+import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting, WorkspaceLeaf } from 'obsidian';
+import { InitPostProcessor } from 'PostProcessor';
+import { InitFileTreeRightClick, InitRibbon } from 'ribbon-and-contexts';
+import { WTSettingTab } from 'settings';
 // Remember to rename these classes and interfaces!
 
 interface WTSettings {
@@ -17,7 +20,12 @@ export default class WTPlugin extends Plugin {
 	async onload() {
 		await this.loadSettings();
 
-
+		const awaited = await Promise.all([
+			InitFileTreeRightClick(this),
+			InitRibbon(this),
+			InitCommands(this),
+			InitPostProcessor(this)
+		]);
 
 		// This adds a settings tab so the user can configure various aspects of the plugin
 		this.addSettingTab(new WTSettingTab(this.app, this));
@@ -27,6 +35,8 @@ export default class WTPlugin extends Plugin {
 		this.registerDomEvent(document, 'click', (evt: MouseEvent) => {
 			console.log('click', evt);
 		});
+
+
 
 		// When registering intervals, this function will automatically clear the interval when the plugin is disabled.
 		this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));

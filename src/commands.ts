@@ -1,4 +1,4 @@
-import WTPlugin from "main";
+import WTPlugin from "./main";
 import { App, Editor, MarkdownView, Modal } from "obsidian";
 
 class WTModel extends Modal {
@@ -17,7 +17,7 @@ class WTModel extends Modal {
 	}
 }
 
-export async function InitRibbon(wt: WTPlugin) {
+export async function InitCommands(wt: WTPlugin) {
 
     // This adds a simple command that can be triggered anywhere
     wt.addCommand({

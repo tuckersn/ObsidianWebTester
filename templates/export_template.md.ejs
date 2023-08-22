@@ -1,0 +1,54 @@
+# Overview
+<%= overview %>
+
+# Endpoints
+<% for(let e of endpoints) { %>
+## <%= e.method %> <%= e.path %>
+<%= e.description %>
+
+### Request
+#### Query Parameters
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| `param1` | `string` | Param 1 | No |
+| `param2` | `string` | Param 2 | No |
+
+### Response
+#### Status Codes
+| Code | Description |
+| ---- | ----------- |
+| `200` | Success |
+| `400` | Bad Request |
+| `401` | Unauthorized |
+
+#### Body
+```json
+{
+  "id": "string",
+  "name": "string"
+}
+```
+
+## POST /api/v1/endpoint
+Post endpoint.
+
+### Request
+#### Body
+```json
+{
+  "id": "string",
+  "name": "string"
+}
+```
+
+### Response
+#### Status Codes
+| Code | Description |
+| ---- | ----------- |
+| `200` | Success |
+| `400` | Bad Request |
+| `401` | Unauthorized |
+<%}%>
+
+
+# Metadata
